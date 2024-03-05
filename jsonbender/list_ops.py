@@ -52,6 +52,8 @@ class Forall(ListOp):
     """
 
     def op(self, func, vals):
+        if vals is None:
+            return None
         return list(map(func, vals))
 
     @classmethod

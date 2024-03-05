@@ -19,6 +19,9 @@ class TestForall(ListOpTestCase):
     def test_empty_list(self):
         self.assert_list_op([], lambda i: i*2, [])
 
+    def test_none_list(self):
+        self.assert_list_op(None, lambda i: i*2, None)
+
     def test_nonempty_list(self):
         self.assert_list_op(range(1, 5), lambda i: i*2, [2, 4, 6, 8])
 
@@ -31,6 +34,11 @@ class TestForall(ListOpTestCase):
         self.assert_bender(self.cls.bend({'b': S('a')}),
                            [{'a': 23}, {'a': 27}],
                            [{'b': 23}, {'b': 27}])
+
+    def test_bend_none(self):
+        self.assert_bender(self.cls.bend({'b': S('a')}),
+                           None,
+                           None)
 
     def test_bend_with_context(self):
         mapping = {'b': Context() >> S('c')}
